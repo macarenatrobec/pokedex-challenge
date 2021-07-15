@@ -1,0 +1,6 @@
+<div [style.background-image]="'url(' + pokemon?.sprites?.front_default + ')'" class="background">
+</div>
+<div class="pokemon-img">
+  <img [src]="pokemon?.sprites?.front_default" alt="">
+  <img *ngIf="detail" [src]="pokemon?.sprites?.back_default" alt="">
+</div>

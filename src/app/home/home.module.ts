@@ -9,6 +9,7 @@ import { CardComponent } from '../components/card/card.component';
 import { DetailComponent } from '../components/detail/detail.component';
 
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { CoverComponent } from '../cover/cover.component';
 
 const ngModules = [MatProgressSpinnerModule];
 
@@ -20,6 +21,6 @@ const ngModules = [MatProgressSpinnerModule];
     IonicModule,
     HomePageRoutingModule,
   ],
-  declarations: [HomePage, CardComponent, DetailComponent],
+  declarations: [HomePage, CardComponent, DetailComponent, CoverComponent],
 })
 export class HomePageModule {}

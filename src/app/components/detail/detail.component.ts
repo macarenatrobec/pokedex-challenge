@@ -11,6 +11,7 @@ import { PokedexService } from 'src/app/services/pokedex.service';
 export class DetailComponent implements OnInit {
   @Input() pokemon: IPokemon;
   abilities: IAbility[] = [];
+  content = 'about';
 
   constructor(
     private pokedexService: PokedexService,
@@ -20,6 +21,10 @@ export class DetailComponent implements OnInit {
   async ngOnInit() {
     this.getCurrentPokemonAbilities();
     console.log(this.abilities);
+  }
+
+  segmentChanged(ev) {
+    this.content = ev.detail.value;
   }
 
   async getCurrentPokemonAbilities() {

@@ -8,28 +8,49 @@
 </ion-header>
 
 <ion-content>
-  <div>
-    <img [src]="pokemon.sprites.front_default" alt="">
-    <img [src]="pokemon.sprites.back_default" alt="">
+  <ion-card-header>
+    <app-cover [pokemon]="pokemon" [detail]="true"></app-cover>
+    <ion-segment (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="about">
+        <ion-label>About</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="abilities">
+        <ion-label>Abilities</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="stats">
+        <ion-label>Stats</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-card-header>
+
+
+  <div [ngSwitch]="content">
+    <div *ngSwitchCase="'about'">
+      <ion-chip *ngFor="let type of pokemon.types">{{type.type.name}}</ion-chip>
+
+    </div>
+
+    <div *ngSwitchCase="'abilities'">
+      <ion-list>
+        <ion-card *ngFor="let ability of abilities">
+          <ion-card-title>{{correctString(ability.name)}}</ion-card-title>
+          <ion-card-subtitle>{{ability.effect_entries[1].effect}}</ion-card-subtitle>
+        </ion-card>
+      </ion-list>
+    </div>
+
+    <div *ngSwitchCase="'stats'">
+      <ion-list>
+        <ion-item *ngFor="let stat of pokemon.stats">
+          <ion-label slot="start">{{correctString(stat.stat.name)}} {{stat.base_stat}}</ion-label>
+          <ion-progress-bar [value]="stat.base_stat/200"></ion-progress-bar>
+        </ion-item>
+      </ion-list>
+    </div>
   </div>
 
-  <ion-chip *ngFor="let type of pokemon.types">{{type.type.name}}</ion-chip>
 
-  <ion-list>
-    <ion-card-title>Abilities</ion-card-title>
-    <ion-card *ngFor="let ability of abilities">
-      <ion-card-title>{{correctString(ability.name)}}</ion-card-title>
-      <ion-card-subtitle>{{ability.effect_entries[1].effect}}</ion-card-subtitle>
-    </ion-card>
-  </ion-list>
 
-  <ion-list>
-    <ion-title>Stats</ion-title>
-    <ion-item *ngFor="let stat of pokemon.stats">
-      <ion-label slot="start">{{correctString(stat.stat.name)}} {{stat.base_stat}}</ion-label>
-      <ion-progress-bar [value]="stat.base_stat/200"></ion-progress-bar>
-    </ion-item>
-  </ion-list>
 
 
 </ion-content>

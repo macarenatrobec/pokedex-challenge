@@ -1,10 +1,6 @@
 <ion-card>
   <ion-card-header>
-    <div [style.background-image]="'url(' + pokemon?.sprites?.front_default + ')'" class="background">
-    </div>
-    <div class="pokemon-img">
-      <img [src]="pokemon?.sprites?.front_default" alt="">
-    </div>
+    <app-cover [pokemon]="pokemon"></app-cover>
   </ion-card-header>
   <ion-card-content>
     <ion-card-title>{{correctString(pokemon.name)}} <span style="opacity: 0.4;">#{{pokemon.id}}</span></ion-card-title>
