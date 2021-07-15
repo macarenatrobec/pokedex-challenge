@@ -5,16 +5,21 @@ import { FormsModule } from '@angular/forms';
 
 import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
-import { MessageComponentModule } from '../message/message.module';
+import { CardComponent } from '../components/card/card.component';
+import { DetailComponent } from '../components/detail/detail.component';
+
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
+const ngModules = [MatProgressSpinnerModule];
 
 @NgModule({
   imports: [
+    ...ngModules,
     CommonModule,
     FormsModule,
     IonicModule,
-    MessageComponentModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, CardComponent, DetailComponent],
 })
 export class HomePageModule {}

@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{correctString(pokemon.name)}} <span style="opacity: 0.4;">#{{pokemon.id}}</span></ion-title>
+    <ion-button slot="end" fill="clear" (click)="dismiss()">
+      <ion-icon name="close"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <img [src]="pokemon.sprites.front_default" alt="">
+    <img [src]="pokemon.sprites.back_default" alt="">
+  </div>
+
+  <ion-chip *ngFor="let type of pokemon.types">{{type.type.name}}</ion-chip>
+
+  <ion-list>
+    <ion-card-title>Abilities</ion-card-title>
+    <ion-card *ngFor="let ability of abilities">
+      <ion-card-title>{{correctString(ability.name)}}</ion-card-title>
+      <ion-card-subtitle>{{ability.effect_entries[1].effect}}</ion-card-subtitle>
+    </ion-card>
+  </ion-list>
+
+  <ion-list>
+    <ion-title>Stats</ion-title>
+    <ion-item *ngFor="let stat of pokemon.stats">
+      <ion-label slot="start">{{correctString(stat.stat.name)}} {{stat.base_stat}}</ion-label>
+      <ion-progress-bar [value]="stat.base_stat/200"></ion-progress-bar>
+    </ion-item>
+  </ion-list>
+
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-button (click)="getNextPokemon(pokemon.id-1)" [disabled]="pokemon.id === 1" slot="start" fill="clear">
+      <ion-icon name="arrow-back"></ion-icon>
+    </ion-button>
+    <ion-button (click)="getNextPokemon(pokemon.id+1)" slot="end" fill="clear">
+      <ion-icon name="arrow-forward"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
