@@ -1,9 +1,5 @@
-import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
-import {
-  IonInfiniteScroll,
-  LoadingController,
-  ModalController,
-} from '@ionic/angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IonInfiniteScroll, ModalController } from '@ionic/angular';
 import { IPokemon } from 'pokeapi-typescript';
 import { DetailComponent } from '../components/detail/detail.component';
 import { PokedexService } from '../services/pokedex.service';
@@ -24,8 +20,7 @@ export class HomePage implements OnInit {
 
   constructor(
     private pokedexService: PokedexService,
-    private modalController: ModalController,
-    private loadingController: LoadingController
+    private modalController: ModalController
   ) {}
 
   async ngOnInit() {
@@ -45,16 +40,12 @@ export class HomePage implements OnInit {
     return await modal.present();
   }
 
-  toggleTheme(ev) {
-    console.log(ev);
-  }
-
   async searchPokemon(ev: any) {
     this.searching = true;
-    try {
-      const res = await this.pokedexService.getOne(ev.detail.value);
+    const res = await this.pokedexService.getOne(ev.detail.value);
+    if (res) {
       this.pokedex = [res];
-    } catch (error) {
+    } else {
       this.pokedex = [];
     }
     if (ev.detail.value === '') {
@@ -63,18 +54,15 @@ export class HomePage implements OnInit {
     }
   }
 
-  async presentLoading() {}
-
-  async getMore() {
-    let data;
-    try {
-      const loading = await this.loadingController.create({
-        message: 'Please wait...',
-      });
-      await loading.present();
-      data = await this.pokedexService.getTwentyPokemons(this.pokedex.length);
-    } catch (error) {}
-    this.pokedex.push(...data);
-    this.loadingController.dismiss();
+  async getMore(event) {
+    setTimeout(async () => {
+      event.target.complete();
+      const data = await this.pokedexService.getTwentyPokemons(
+        this.pokedex.length
+      );
+      if (data.length === 1000) {
+        event.target.disabled = true;
+      }
+    }, 500);
   }
 }

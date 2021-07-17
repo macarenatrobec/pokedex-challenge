@@ -14,6 +14,8 @@ export class CardComponent implements OnInit {
   async ngOnInit() {}
 
   correctString(text: string) {
-    return (text.charAt(0).toUpperCase() + text.slice(1)).replace('-', ' ');
+    if (this.pokemon) {
+      return (text?.charAt(0).toUpperCase() + text?.slice(1)).replace('-', ' ');
+    }
   }
 }
