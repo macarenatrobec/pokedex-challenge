@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import PokeAPI, { IAbility, IPokemon } from 'pokeapi-typescript';
+import PokeAPI, {
+  IAbility,
+  IEvolutionChain,
+  IPokemon,
+} from 'pokeapi-typescript';
 
 @Injectable({
   providedIn: 'root',

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { IAbility, IEvolutionChain, IPokemon } from 'pokeapi-typescript';
+import { IAbility, IPokemon } from 'pokeapi-typescript';
 import { PokedexService } from 'src/app/services/pokedex.service';
 
 @Component({
@@ -35,13 +35,17 @@ export class DetailComponent implements OnInit {
     });
   }
 
-  async getNextPokemon(id: number) {
-    this.pokemon = await this.pokedexService.getOne(id);
+  async getNextPokemon(nextPokemonId: number) {
+    this.pokemon = await this.pokedexService.getOne(nextPokemonId);
     this.getCurrentPokemonAbilities();
   }
 
   correctString(text: string) {
     return (text?.charAt(0).toUpperCase() + text?.slice(1)).replace('-', ' ');
+  }
+
+  correntId(id: number) {
+    return String(id).padStart(3, '0');
   }
 
   displayHeldItems() {

@@ -18,4 +18,8 @@ export class CardComponent implements OnInit {
       return (text?.charAt(0).toUpperCase() + text?.slice(1)).replace('-', ' ');
     }
   }
+
+  correntId(id: number) {
+    return String(id).padStart(3, '0');
+  }
 }

@@ -5,7 +5,7 @@
     </ion-title>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-searchbar (ionChange)="searchPokemon($event)" debounce="900" placeholder="ex: Cherubi or 78">
+    <ion-searchbar (ionChange)="searchPokemon($event)" debounce="900" placeholder="ex: Cherubi or 152">
     </ion-searchbar>
   </ion-toolbar>
 </ion-header>
@@ -27,7 +27,7 @@
       <app-card [pokemon]="pokemon" (click)="openPokemonDetail(pokemon)"></app-card>
     </ion-col>
   </ion-row>
-  <ion-infinite-scroll threshold="100px" (ionInfinite)="getMore($event)">
+  <ion-infinite-scroll threshold="0px" (ionInfinite)="getMore($event)">
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>

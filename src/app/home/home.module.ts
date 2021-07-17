@@ -7,7 +7,7 @@ import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 import { CardComponent } from '../components/card/card.component';
 import { DetailComponent } from '../components/detail/detail.component';
-import { CoverComponent } from '../cover/cover.component';
+import { CoverComponent } from '../components/cover/cover.component';
 
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
