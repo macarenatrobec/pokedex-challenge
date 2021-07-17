@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IPokemon } from 'pokeapi-typescript';
-import { PokedexService } from 'src/app/services/pokedex.service';
 
 @Component({
   selector: 'app-card',
