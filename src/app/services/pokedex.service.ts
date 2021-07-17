@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import PokeAPI, { IAbility, IPokemon } from 'pokeapi-typescript';
+import PokeAPI, { IAbility, IGender, IPokemon } from 'pokeapi-typescript';
 
 @Injectable({
   providedIn: 'root',
@@ -9,8 +9,8 @@ export class PokedexService {
   constructor() {}
 
   async getTwentyPokemons(pokemonsDisplaying: number): Promise<IPokemon[]> {
+    const populatedPokemons: IPokemon[] = [];
     try {
-      const populatedPokemons: IPokemon[] = [];
       const completeResourceList = await PokeAPI.Pokemon.list(
         20,
         pokemonsDisplaying
@@ -30,7 +30,9 @@ export class PokedexService {
   }
 
   async getAbilities(name: string): Promise<IAbility> {
-    const result = await PokeAPI.Ability.resolve(name);
-    return result;
+    try {
+      const result = await PokeAPI.Ability.resolve(name);
+      return result;
+    } catch (error) {}
   }
 }

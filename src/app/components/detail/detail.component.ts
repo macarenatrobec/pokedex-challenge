@@ -20,7 +20,6 @@ export class DetailComponent implements OnInit {
 
   async ngOnInit() {
     this.getCurrentPokemonAbilities();
-    console.log(this.abilities);
   }
 
   segmentChanged(ev) {
@@ -42,7 +41,13 @@ export class DetailComponent implements OnInit {
   }
 
   correctString(text: string) {
-    return (text.charAt(0).toUpperCase() + text.slice(1)).replace('-', ' ');
+    return (text?.charAt(0).toUpperCase() + text?.slice(1)).replace('-', ' ');
+  }
+
+  displayHeldItems() {
+    return this.pokemon.held_items.map((heldItem) =>
+      this.correctString(heldItem.item.name)
+    );
   }
 
   dismiss() {

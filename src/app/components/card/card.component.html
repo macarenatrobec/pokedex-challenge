@@ -3,6 +3,7 @@
     <app-cover [pokemon]="pokemon"></app-cover>
   </ion-card-header>
   <ion-card-content>
-    <ion-card-title>{{correctString(pokemon.name)}} <span style="opacity: 0.4;">#{{pokemon.id}}</span></ion-card-title>
+    <ion-card-title>{{correctString(pokemon?.name)}} <span style="opacity: 0.4;">#{{pokemon?.id}}</span>
+    </ion-card-title>
   </ion-card-content>
 </ion-card>
