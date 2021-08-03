@@ -35,4 +35,8 @@ export class PokedexService {
       return result;
     } catch (error) {}
   }
+
+  async getTwentyMockPokemons(): Promise<IPokemon[]> {
+    return this.pokedex;
+  }
 }
